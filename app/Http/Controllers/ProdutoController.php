@@ -21,9 +21,8 @@ class ProdutoController extends Controller
         $produtos = DB::table('produtos')
         ->join('categorias', 'categorias.id', '=', 'produtos.categoria_id')
         ->select('produtos.*','categorias.nome AS categoriaNome')
-        ->get();
-        
-        // $produtos = Produto::paginate(5);
+        ->paginate(5);
+
         return view('produto', compact('produtos'));
     }
 

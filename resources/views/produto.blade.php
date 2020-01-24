@@ -17,10 +17,6 @@
             </tr>
         </thead>
         <tbody> 
-            {{-- @foreach ($CategoriaJoins as $item)
-            
-            @endforeach --}}
-
             @foreach ($produtos as $produto)
                 <tr>
                     <th>{{ $produto->id }}</th>
@@ -36,6 +32,6 @@
     </table>
 </div>
 <div class="card-footer">
-    {{-- {{ $produtos->links() }} --}}
+    {{ $produtos->links() }}
 </div>
 @endsection
