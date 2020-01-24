@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/home', function () {
+    return view('home');
+});
+
 Route::get('/produto', 'ProdutoController@index');
 
 Route::get('/produto/create', 'ProdutoController@create');

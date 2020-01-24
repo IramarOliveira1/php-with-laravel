@@ -18,14 +18,12 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-
         $produtos = DB::table('produtos')
         ->join('categorias', 'categorias.id', '=', 'produtos.categoria_id')
         ->select('produtos.*','categorias.nome AS categoriaNome')
         ->get();
         
         // $produtos = Produto::paginate(5);
-
         return view('produto', compact('produtos'));
     }
 
@@ -66,7 +64,8 @@ class ProdutoController extends Controller
     public function show($id)
     {
         $productViewUpdate = Produto::find($id);
-        return view('produtoUpdate',compact('productViewUpdate'));
+        $categoriaViewUpdate = Categoria::all();
+        return view('produtoUpdate',compact('productViewUpdate','categoriaViewUpdate'));
     }
 
     /**
@@ -88,11 +87,12 @@ class ProdutoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
+    {   
         $productUpdate = Produto::find($id);
         $productUpdate->nome = $request->input('nome');
         $productUpdate->preco = $request->input('preco');
         $productUpdate->quantidade = $request->input('quantidade');
+        $productUpdate->categoria_id = $request->input('categoria_id');
         $productUpdate->save();
         return redirect('/produto');
     }
